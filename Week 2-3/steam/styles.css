@@ -1,0 +1,577 @@
+*::-webkit-scrollbar{
+    width: 14px;
+    height: 12px;
+}
+*::-webkit-scrollbar-track{
+    background: #171a21;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #434953;
+    border-radius: 10px;
+    border: 4px solid #171A21;
+  }
+*::-webkit-scrollbar-thumb:hover{
+    background-color: #4E5157;
+    border: 4px solid #4E5157;
+}
+*::-webkit-scrollbar-corner{
+      background-color:#171A21;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.additional-menu{
+    font-size: 11px;
+    padding-top: 5px;
+    padding-left: 120px;
+    display: flex;
+    align-items:flex-start;
+    justify-content: center;
+}
+body{
+    margin: 0;
+    margin-left: 16px;
+    background-color: #171a21;
+    font-family: "Motiva Sans", Sans-serif;
+}
+.center{
+    background: radial-gradient(rgba(24, 26, 33, 0) 0%, #181A21 100%) fixed no-repeat, url(https://store.akamai.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask.jpg) center top no-repeat, #181A21;
+    height: 422px;
+    padding: 80px 0 150px 0;
+    display: grid;
+    justify-content: center;
+}
+.community-button
+{
+    padding-top: 41px;
+}
+.community-menu
+{
+    display: none;
+    opacity: 0;
+    width: 132px;
+    height: 156px;
+    padding: 11px 15px 4px 15px;
+    margin-left: 1px;
+    background-color: #171a21;
+    box-shadow: 3px 3px 5px -3px #000;
+    background-clip: padding-box;
+    font-size: 11px;
+    text-transform: uppercase;   
+}
+.community-menu a{
+    color: #b8b6b4
+}
+.community-trigger:hover ~ .community-menu,
+.community-menu:hover{
+    opacity: 1;
+    display: grid;
+    position: absolute
+}
+.detailed-button{
+    width: 66px;
+    height: 20px;
+    padding: 8px 16px;
+    background-color: rgba(255,255,255,0.1);
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+    margin-top: 11px;
+}
+.download-steam{
+    display: flex;
+    background-color: #5c7e10;
+    color: rgb(229, 228, 220);
+    width: 138px;
+    margin-top: 1px;
+    margin-right: 0px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+}
+.download-steam:hover{
+    color: white;
+}
+.download-steam-sign{
+    padding-right: 10.5px;
+    padding-left: 1px;
+    padding-bottom: 2px;
+}
+.enter{
+    padding-top: 5px;
+    padding-left: 10px;
+    color: #b8b6b4;
+}
+.enter:hover{
+    color: white;
+}
+.find-account{
+    align-self: flex-end;
+    justify-self: center;
+    margin-top: 17px;
+    text-decoration: underline;
+    color: #afafaf;
+}
+.find-account:hover{
+    color: #c9c9c9
+}
+footer{    
+    display: grid;
+    justify-content: center;
+    min-height: 28px;
+    margin-bottom: 12px;
+}
+.footer-content{
+    padding-right: 5px;
+}
+.footer-content-bottom{
+    padding-top: 16px;
+    padding-bottom: 55px;
+    padding-left: 0.5px;
+    width: 809px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    color: #61686D;
+}
+.footer-content-top{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 10px 0 14px 0;
+    margin-right: 12px;
+    width: 940px;
+    display: block;
+    border-top: 1px solid #363c44;
+    border-bottom: 1px solid #363c44;
+    color: #8F98A0;
+}
+.footer-images{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1px;
+}
+.footer-ref{    
+    color: #C6D4DF;
+}
+.footer-ref:hover{
+    color: white;
+}
+.footer-ref-img{
+    padding-top: 3px;
+    padding-right: 4px;
+}
+.footer-text{
+    padding-left: 12.5px;
+    line-height: 16px;
+}
+header{
+    display:grid;
+    height: 104px;    
+    justify-content: center;
+}
+.join-steam{
+    width: 200px;
+    display: grid;
+    color: #b8b6b4;
+    text-align: center;
+    padding-top: 36px;
+    padding-right: 9px;
+    margin: 0px 3px 0px 0px;
+}
+.join-steam-button{
+    width: 196px;
+    height: 60px;
+    border: 1px solid #74767A;
+    border-radius: 2px;
+    font-size: 15px;
+    display: grid;
+    align-items: center;
+    margin: 15px 0 11px 1px;
+    padding-right: 0px;
+}
+.language{
+    height: 21px;
+    display: flex;
+    align-items: center;
+    padding-left: 11px;
+    padding-top: 2px;
+    color: #b8b6b4;
+    cursor: pointer;
+}
+.language:hover{
+    color: white;
+}
+.language-arrow{
+    padding-top: 3px;
+}
+.login{
+    display: flex;
+}
+.login-information{
+    padding: 24px 32px 24px 24px;
+    width: 200px;
+    background-color: #181a21;
+    display: grid;
+}
+.login-form{
+    width: 412px;
+    height: 280px;
+    padding: 24px 0 24px 32px;
+    background-color: #181a21;
+    font-size: 12px;
+    display: grid;
+}
+.login-header{
+    max-width: 668px;
+    height: 46px;
+    margin: 8px 16px 40px;
+    color: white;
+    font-size: 32px;
+    letter-spacing: 1.76px;
+}
+.login-input{
+    width: 390px;
+    height: 17px;
+    padding: 10px;
+    border: 1px solid #32353c;
+    border-radius: 2px;
+    background-color: #32353c;
+    outline: none;
+    caret-color: white;
+}
+.login-input:hover{
+    background-color: #393C44;
+}
+.menubutton{
+    color: #b8b6b4;
+    font-size: 14px;
+    padding: 43px 7px 7px 7px;
+    white-space: nowrap;
+}
+.menubutton:hover{
+    color: white;
+}
+.menu-s{
+    margin-left: -16px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+}
+.menu-small{
+    display: none;
+    width: 280px;
+    height: 100vh;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: #171a21;
+}
+.menu-small-footer{
+    display: grid;
+    margin-top: auto;
+    font-size: 10px;
+    color: #8a8a8a;
+    padding: 0 12px 24px 12px;
+}
+.menu-small-footer-ref{
+    color: #8a8a8a;
+}
+.menu-small-img{
+    position: absolute;        
+    top: 9px;
+    left: 8px;
+}
+.menu-small-menuitem{
+    height: 41.250px;
+    padding: 0 12px;
+    font-size: 16.5px;
+    color: #8a8a8a;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.menu-small-refs{
+    display: flex;
+    width: 256px;
+    height: 55px;
+    padding: 0px 12px;
+    border-top: 1px solid #2F3138;
+    border-bottom: 1px solid #2F3138;
+    font-size: 22px;
+    color: #bdbdbd;
+    align-items: center;
+    cursor: pointer;
+}
+.menu-small-vlogo{
+    padding-bottom: 3px;
+}
+.header-big{
+    display: flex;
+    padding-right: 20px;
+}
+.header-small{
+    display: none;
+}
+p{
+    margin: 0;
+}
+.qr{
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+}
+.qr-image{
+    color: #E9E9E9;
+    fill: #afafaf;
+}
+.qr-txt{
+    font-size: 12px;
+    padding-left: 8.2px;
+    color: #afafaf;
+    width: 170px;
+    line-height: 16px;
+}
+.remember-me{
+    display: flex;
+    color: #afafaf;
+    text-align: end;
+}
+.remember-me-square{
+    width: 14px;
+    height: 14px;
+    padding: 3px;
+    background-color: #32353c;
+    border: 4px solid none;
+}
+.shop-button{
+    padding-top: 41px;
+}
+.shop-menu{
+    display: none;
+    opacity: 0;
+    width: 131px;
+    height: 168px;
+    padding: 11px 15px 4px 15px;
+    margin-left: 1px;
+    background-color: #171a21;
+    box-shadow: 3px 3px 5px -3px #000;
+    background-clip: padding-box;
+    font-size: 11px;
+    text-transform: uppercase;       
+}
+.shop-menu a{
+    color: #b8b6b4
+}
+.shop-menu a:hover{
+    color:white;
+}
+.shop-trigger:hover ~ .shop-menu,
+.shop-menu:hover{
+    opacity: 1;
+    display: grid;
+    position: absolute
+}
+.show-qr{
+    font-size: 12px;
+    padding: 1px 13.5px 49px 1.5px;
+    cursor: pointer;
+    color: #afafaf;
+    text-decoration: underline;
+    text-align: center;
+    line-height: 24px;
+}
+.steam-free{
+    padding-top: 8px;
+    padding-bottom: 4px;
+}
+.steam-label-1{
+    display: flex;
+    align-items: center;
+    padding-right: 24px;
+    margin: 30px 0px;
+}
+.steam-label-2{
+    padding-right: 16px;
+}
+.submit-button{
+    background: linear-gradient(90deg, #06BFFF 0%, #2D73FF 100%);
+    border-width: 0;
+    border-radius: 2px;
+    width: 270px;
+    height: 50px;
+    padding: 13px 12px 11px 12px;
+    font-size: 18px;
+    letter-spacing: 0.54px;
+    justify-self: center;
+    color: white;
+    cursor: pointer;
+}
+.submit-button:focus{
+    outline: solid #06bfff;
+    outline-width: 1px;
+}
+.switch{
+    display: none;
+    opacity: 0;
+}
+.switch-design{
+    display: none;
+    z-index: -1;
+}
+.switch:checked ~ .switch-design{    
+    display: block;
+    background-color:black;
+    position: absolute;
+    left: -12px;
+    top: -1px;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.4;
+}
+.switch:checked{
+    display: block;
+    position: absolute;
+    left: -12px;
+    top: -1px;
+    width: 100vw;
+    height: 100vh;
+    cursor: auto;
+}
+.switch:checked ~ .menu-small{
+    display: flex;
+    flex-direction: column;
+}
+.under-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    padding-top: 38px;
+    padding-bottom: 82px;
+    padding-left: 2px;
+}
+.under-center-lft{
+   width: 200px;
+   text-align: center;
+   padding-left: 10px;
+}
+.under-center-txt{ 
+    height: 40px;
+    width: 200px;
+    padding-bottom: 10px;
+    line-height: normal;
+    color: #b8b6b4;
+}
+@media screen and (max-width: 910px)
+{
+    body{
+        margin: 0;
+    }
+    footer{
+        display: none;
+    }
+    header{
+        height: 36px;
+        padding: 13px 8px;
+        position: sticky;
+        top: 0;
+        background-color: #171a21;
+    }
+    .header-big{
+        display: none;
+    }
+    .header-small{
+        display: flex;
+        margin-left: 16px;
+    }
+    .menu-s{
+        margin: 0;
+    }
+    .under-center{
+        margin-bottom: 28px;
+    }
+    .switch{
+        display: block;
+        width: 36px;
+        height: 31px;
+        position: absolute;
+        cursor: pointer;
+        top: 8px;
+        left: 4px;
+    }
+}
+@media screen and (max-width: 700px)
+{
+    .center{        
+        text-align: center;
+        height: 670px;
+        padding: 12px 0 32px 0;
+        background: radial-gradient(rgba(24, 26, 33, 0) 0%, #181A21 100%) fixed no-repeat, url( 'https://store.cloudflare.steamstatic.com/public/shared/images/joinsteam/new_login_bg_strong_mask_mobile.jpg' ) center top no-repeat, #181A21;
+    }
+    .detailed-button{
+        justify-self: center;
+        margin: 10px 0 0px 0;
+    }
+    .login{
+        display: grid;
+        max-width: 270px;
+        justify-content: center;
+        justify-self: center;
+    }    
+    .login-form{
+        background: none;
+        width: 270px;
+        height: 280px;
+        text-align: left;
+        padding: 0;
+    }
+    .login-header{
+        height: 94px;
+        margin: 0;
+        padding-top: 8px;
+        margin-bottom: 16px;
+    }
+    .login-information{
+        background: none;
+        justify-self: center;
+        padding: 0;
+        margin-top: 48px;
+        height: 232px;
+    }
+    .login-input{
+        width: 248px;
+    }
+    .qr{
+        padding-top: 4px;
+    }
+    .qr-image{
+        display: none;
+    }
+    .qr-txt{
+        width: 184px;
+    }
+    .show-qr{
+        padding: 0;
+    }
+    .under-center{
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 80px;
+    }
+    .under-center-img{
+        padding-right: 2px;
+    }
+    .under-center-lft{
+        order: 1;
+        padding-right: 12px;
+        padding-top: 0px;
+    }
+    .join-steam{
+        order: -1;
+        margin: 0;
+        padding-bottom: 1px;
+        height: 128px;
+        padding-left: 7px;
+    }
+}
