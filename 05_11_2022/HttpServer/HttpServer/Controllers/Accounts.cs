@@ -36,9 +36,9 @@ namespace HttpServer.Controllers
             if (sessionCookie != null)
             {
                 var session = sessionCookie.Value.Deserialize<Session.Session>();
-                if(session.IsAuthorize)
+                if (session.IsAuthorize)
                     return new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True")
-                            .GetValues().Where(x=>x.Id == session.Id).FirstOrDefault();
+                            .GetValues().Where(x => x.Id == session.AccountId).FirstOrDefault();
             }
             context.Response.StatusCode = 401;
             return null;
@@ -61,11 +61,13 @@ namespace HttpServer.Controllers
 
             if (dbContent.Any())
             {
-                var cookie = new Cookie("SessionId", new Session.Session(true, dbContent.First().Id).ToString(), "/")
+                var account = dbContent.First();
+                var cookie = new Cookie("SessionId", new Session.Session(true, account.Id).ToString(), "/")
                 {
                     Expires = DateTime.Now + new TimeSpan(20 * TimeSpan.TicksPerMinute)
                 };
                 context.Response.AppendCookie(cookie);
+                SessionManager.CreateSession(new Session.Session(true, account.Id, account.Name, cookie.Expires));
             }
             context.Response.Redirect("/");
         }

@@ -124,7 +124,7 @@ namespace HttpServer
                 text = reader.ReadToEnd();
             }
 
-            object[] methodParams = null;
+            object[]? methodParams = null;
 
             try
             {
