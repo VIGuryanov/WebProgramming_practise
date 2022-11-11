@@ -11,44 +11,22 @@ namespace HttpServer.Session
     [DB_Table]
     public class Session
     {
-        public bool IsAuthorize { get; }
-
         [DB_Field]
         [DB_Identity]
         public int Id { get; } = 0;
 
         [DB_Field]
-        public int AccountId { get; }
+        public string Guid {get; }
 
-        [DB_Field]
-        public string Email { get; }
-
-        [DB_Field]
-        public DateTime createDateTime { get; }
-
-        public Session(bool isAuthorize, int accId)
+        public Session(string guid)
         {
-            IsAuthorize = isAuthorize;
-            AccountId = accId;
+            Guid = guid;
         }
 
-        public Session(bool isAuthorize, int accId, string email, DateTime dt)
+        private Session(int id, string guid)
         {
-            IsAuthorize = isAuthorize;
-            AccountId = accId;
-            Email = email;
-            createDateTime = dt;
-        }
-
-        private Session(int id, int accId, string email, DateTime dateTime)
-        {
-            IsAuthorize = true;
             Id = id;
-            AccountId = accId;
-            Email = email;
-            createDateTime = dateTime;
+            Guid = guid;
         }
-
-        public override string ToString() => $"IsAuthorize:{IsAuthorize} AccountId={AccountId}";
     }
 }

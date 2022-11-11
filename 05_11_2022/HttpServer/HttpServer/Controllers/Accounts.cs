@@ -34,10 +34,11 @@ namespace HttpServer.Controllers
         [HttpGet]
         public Account? GetAccountInfo(HttpListenerContext context)
         {
-            if(CheckSession(context, out Account? acc))
+            throw new InvalidOperationException();
+            /*if(CheckSession(context, out Account? acc))
                 return acc;
             context.Response.StatusCode = 401;
-            return acc;
+            return acc;*/
         }
 
         [HttpPost]
@@ -58,37 +59,25 @@ namespace HttpServer.Controllers
             if (dbContent.Any())
             {
                 var account = dbContent.First();
-                var cookie = new Cookie("SessionId", new Session.Session(true, account.Id).ToString(), "/")
+                var cookie = new Cookie("SessionId", Guid.NewGuid().ToString(), "/")
                 {
                     Expires = DateTime.Now + new TimeSpan(20 * TimeSpan.TicksPerMinute)
                 };
                 context.Response.AppendCookie(cookie);
-                SessionManager.CreateSession(new Session.Session(true, account.Id, account.Name, cookie.TimeStamp));
+                SessionManager.CreateSession(new Session.Session(cookie.Value));
             }
             context.Response.Redirect("/");
         }
 
-        private bool CheckSession(HttpListenerContext context) => CheckSession(context, out Account? empt);
-
-        private bool CheckSession(HttpListenerContext context, out Account? acc)
+        private bool CheckSession(HttpListenerContext context)
         { 
             var sessionCookie = context.Request.Cookies.Where(x => x.Name == "SessionId").FirstOrDefault();
             if (sessionCookie != null)
             {
-                var session = sessionCookie.Value.Deserialize<Session.Session>();
-                if (session.IsAuthorize)
-                {
-                    acc = new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True")
-                            .GetValues().Where(x => x.Id == session.AccountId).FirstOrDefault();
-                    if (acc != null)
-                    { 
-                        session = new Session.Session(session.IsAuthorize, session.AccountId, acc.Name, sessionCookie.TimeStamp);
-                        if(SessionManager.CheckSession(session))
-                            return true;
-                    }
-                }
+                var session = new Session.Session(sessionCookie.Value);
+                if(SessionManager.CheckSession(session))
+                    return true;
             }
-            acc = null;
             return false;
         }
     }

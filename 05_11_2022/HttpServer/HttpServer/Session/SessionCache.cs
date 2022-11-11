@@ -10,12 +10,11 @@ namespace HttpServer.Session
         public Session? GetOrCreate(Session? item)
         {
             var mem = item;
-            if (item != null && !_cache.TryGetValue(item.AccountId, out item))
+            if (item != null && !_cache.TryGetValue(item.Guid, out item))
             {
                 item = mem;
                 var db_value = orm.Select<Session>()
-                                .Where(s => s.Email == item.Email
-                                            && s.AccountId == item.AccountId)
+                                .Where(s => s.Guid == item.Guid)
                                 .FirstOrDefault();
 
                 if(db_value == null)
@@ -24,7 +23,7 @@ namespace HttpServer.Session
                 var cacheEntryOptions = new MemoryCacheEntryOptions()
                      .SetSlidingExpiration(TimeSpan.FromMinutes(2));
 
-                _cache.Set(db_value.AccountId, db_value, cacheEntryOptions);
+                _cache.Set(db_value.Guid, db_value, cacheEntryOptions);
             }
             return item;
         }
