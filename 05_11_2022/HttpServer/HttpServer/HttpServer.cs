@@ -95,18 +95,16 @@ namespace HttpServer
             isWaiting = false;
         }
 
-        private bool MethodHandler(HttpListenerContext _httpContext)
+        private bool MethodHandler(HttpListenerContext httpContext)
         {
             // объект запроса
-            HttpListenerRequest request = _httpContext.Request;
+            HttpListenerRequest request = httpContext.Request;
+            
+            httpContext.Response.ContentType = "Application/json";
 
-            // объект ответа
-            HttpListenerResponse response = _httpContext.Response;
-            response.ContentType = "Application/json";
+            if (httpContext.Request.Url.Segments.Length < 2) return false;
 
-            if (_httpContext.Request.Url.Segments.Length < 2) return false;
-
-            string[] pathParts = _httpContext.Request.Url
+            string[] pathParts = httpContext.Request.Url
                                     .Segments
                                     .Select(s => s.Replace("/", ""))
                                     .ToArray();
@@ -115,7 +113,7 @@ namespace HttpServer
 
             if (controller == null) return false;
 
-            MethodInfo? method = AttributesRecognize.GetMethodByHttpAttribute(_httpContext, pathParts[2], controller);
+            MethodInfo? method = AttributesRecognize.GetMethodByHttpAttribute(httpContext, pathParts[2], controller);
 
             if (method == null) return false;
 
@@ -144,8 +142,8 @@ namespace HttpServer
                         throw new NotImplementedException("Logic for another methods not implemented yet");
                 }
 
-                if (method.GetParameters().Where(x => x.ParameterType.Name == "HttpListenerResponse").Count() == 1)
-                    methodParams = methodParams.Append(response).ToArray();
+                if (method.GetParameters().Where(x => x.ParameterType.Name == "HttpListenerContext").Count() == 1)
+                    methodParams = methodParams.Append(httpContext).ToArray();
 
                 methodParams = method.GetParameters()
                                     .Select((p, i) => Convert.ChangeType(methodParams[i], p.ParameterType))
@@ -153,7 +151,7 @@ namespace HttpServer
 
                 var ret = method.Invoke(Activator.CreateInstance(controller), methodParams);
 
-                SendResponse(Encoding.ASCII.GetBytes(JsonSerializer.Serialize(ret)), response);
+                SendResponse(Encoding.ASCII.GetBytes(JsonSerializer.Serialize(ret)), httpContext.Response);
 
                 return true;
             }
