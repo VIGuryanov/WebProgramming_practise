@@ -33,10 +33,17 @@ namespace HttpServer.Controllers
         }
 
         [HttpPost]
-        public bool Login(string name, string password)
+        public void Login(string name, string password, HttpListenerResponse response)
         {
-            return new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True")
-                .GetValues().Where(x=>x.Name==name && x.Password==password).Any();
+            var dbContent = new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True")
+                .GetValues().Where(x=>x.Name==name && x.Password==password);
+            if(dbContent.Any())
+            {
+                var cookie = new Cookie("SessionId", "{IsAuthorize:true, Id=" + $"{dbContent.First().Id}" +"}","/");
+                cookie.Expires = DateTime.Now + new TimeSpan(2*TimeSpan.TicksPerMinute);
+                response.AppendCookie(cookie);
+            }
+            response.Redirect("/");
         }
     }
 }
