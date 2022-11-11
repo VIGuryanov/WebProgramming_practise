@@ -16,32 +16,28 @@ namespace HttpServer.Controllers
         [HttpGet]
         public List<Account> GetAccounts(HttpListenerContext context)
         {
-            var getSessionCookie = context.Request.Cookies.Where(x => x.Name == "SessionId" && x.Value.Contains("IsAuthorize:true"));
-            if (getSessionCookie.Any())
-                return new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True").GetValues();
+            if(CheckSession(context))
+                return new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True").GetValues();             
             context.Response.StatusCode = 401;
             return new List<Account>();
         }
 
         [HttpGet]
-        public Account? GetAccountById(int id) => new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True").Find(id);
-        /*{
-            return GetAccounts().FirstOrDefault(a => a.Id == id);
-        }*/
+        public Account? GetAccountById(int id, HttpListenerContext context)
+        {
+            if(CheckSession(context))
+                return new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True").Find(id);
+            context.Response.StatusCode = 401;
+            return null;
+        }
 
         [HttpGet]
         public Account? GetAccountInfo(HttpListenerContext context)
         {
-            var sessionCookie = context.Request.Cookies.Where(x => x.Name == "SessionId").FirstOrDefault();
-            if (sessionCookie != null)
-            {
-                var session = sessionCookie.Value.Deserialize<Session.Session>();
-                if (session.IsAuthorize)
-                    return new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True")
-                            .GetValues().Where(x => x.Id == session.AccountId).FirstOrDefault();
-            }
+            if(CheckSession(context, out Account? acc))
+                return acc;
             context.Response.StatusCode = 401;
-            return null;
+            return acc;
         }
 
         [HttpPost]
@@ -67,9 +63,33 @@ namespace HttpServer.Controllers
                     Expires = DateTime.Now + new TimeSpan(20 * TimeSpan.TicksPerMinute)
                 };
                 context.Response.AppendCookie(cookie);
-                SessionManager.CreateSession(new Session.Session(true, account.Id, account.Name, cookie.Expires));
+                SessionManager.CreateSession(new Session.Session(true, account.Id, account.Name, cookie.TimeStamp));
             }
             context.Response.Redirect("/");
+        }
+
+        private bool CheckSession(HttpListenerContext context) => CheckSession(context, out Account? empt);
+
+        private bool CheckSession(HttpListenerContext context, out Account? acc)
+        { 
+            var sessionCookie = context.Request.Cookies.Where(x => x.Name == "SessionId").FirstOrDefault();
+            if (sessionCookie != null)
+            {
+                var session = sessionCookie.Value.Deserialize<Session.Session>();
+                if (session.IsAuthorize)
+                {
+                    acc = new AccountRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SteamDB;Integrated Security=True")
+                            .GetValues().Where(x => x.Id == session.AccountId).FirstOrDefault();
+                    if (acc != null)
+                    { 
+                        session = new Session.Session(session.IsAuthorize, session.AccountId, acc.Name, sessionCookie.TimeStamp);
+                        if(SessionManager.CheckSession(session))
+                            return true;
+                    }
+                }
+            }
+            acc = null;
+            return false;
         }
     }
 }

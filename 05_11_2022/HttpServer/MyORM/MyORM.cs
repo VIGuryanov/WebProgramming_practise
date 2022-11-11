@@ -68,7 +68,7 @@ namespace MyORM
 
             sqlExpression.Append(SqlExpressionBuilder.PackInParentheses(insertProperties.Select(x => x.Name), ","));
             sqlExpression.Append(" VALUES");
-            sqlExpression.Append(SqlExpressionBuilder.PackInParentheses(insertProperties.Select(x => $"'{x.GetValue(data)}'"), ","));
+            sqlExpression.Append(SqlExpressionBuilder.PackInParentheses(insertProperties.Select(x => $"'{Conversions.ConvertToSqlFormat(x.GetValue(data))}'"), ","));
 
             ExecuteNonReturnCommand(sqlExpression.ToString());
         }

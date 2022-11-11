@@ -15,8 +15,7 @@ namespace HttpServer.Session
                 item = mem;
                 var db_value = orm.Select<Session>()
                                 .Where(s => s.Email == item.Email
-                                            && s.AccountId == item.AccountId
-                                            && s.createDateTime == item.createDateTime)
+                                            && s.AccountId == item.AccountId)
                                 .FirstOrDefault();
 
                 if(db_value == null)
