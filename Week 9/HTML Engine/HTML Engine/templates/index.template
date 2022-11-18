@@ -1,0 +1,32 @@
+﻿<html>
+	<head></head>
+	<body>
+		<p>Surname: {{Surname}}</p>
+		<p>Name: {{Name}}</p>
+		<p>Lastname: {{Lastname}}</p>
+		<p>Discipline: {{Disciplines[1]}}</p>
+		<p>#group: {{GroupNumber[0]}}</p>
+		<table>
+			<tr><th>#</th><th>Номер студ. билета</th><th>Фамилия</th><th>Имя</th><th>Отчество</th></tr>
+			{{for index 0 to {{Students.Count}} step 1
+				<tr><td>@index</td><td>{{Students[@index].StudId}}</td><td>{{Students[@index].Surname}}</td><td>{{Students[@index].Name}}</td><td>{{Students[@index].Lastname}}</td>
+			}}
+		</table>
+		{{if({{Students.Count}}>15)
+			then:
+				<span>Группа переполнена</span>
+			else:
+				{{if({{Students.Count}} >= 10)
+					then:
+						<span>Группа полна</span>
+					else:
+						<span>Недобор по группе</span>
+				}}
+		}}
+		<ul>
+			{{foreach in Disciplines
+				<li>{{this}}</li>
+			}}
+		</ul>
+	</body>
+</html>
