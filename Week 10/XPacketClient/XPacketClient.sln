@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XPacketClient", "XPacketClient\XPacketClient.csproj", "{430D88B8-0103-48D7-AFEC-98DBA6E5C913}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyProtocol", "..\MyProtocol\MyProtocol\MyProtocol.csproj", "{8FBE8085-6F85-4094-BB81-3A27D21CF3ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{430D88B8-0103-48D7-AFEC-98DBA6E5C913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430D88B8-0103-48D7-AFEC-98DBA6E5C913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430D88B8-0103-48D7-AFEC-98DBA6E5C913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430D88B8-0103-48D7-AFEC-98DBA6E5C913}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FBE8085-6F85-4094-BB81-3A27D21CF3ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FBE8085-6F85-4094-BB81-3A27D21CF3ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FBE8085-6F85-4094-BB81-3A27D21CF3ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FBE8085-6F85-4094-BB81-3A27D21CF3ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {007E3588-8DDE-4DE8-9063-FB1D70BEBCD1}
+	EndGlobalSection
+EndGlobal
